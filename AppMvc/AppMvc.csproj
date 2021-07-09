@@ -137,7 +137,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="index-JustForReference-DeleteIt.html" />
+    <Content Include="index.html" />
+    <Content Include="package.json" />
     <Content Include="Scripts\App\app.component.html" />
     <Content Include="Scripts\App\app.component.js" />
     <Content Include="Scripts\App\app.module.js" />
@@ -148,7 +149,6 @@
     <None Include=".bin\node.cmd" />
     <None Include=".bin\npm.cmd" />
     <Content Include="package-lock.json" />
-    <Content Include="package.json" />
     <Content Include="Scripts\App\app.component.js.map" />
     <Content Include="Scripts\App\app.module.js.map" />
     <Content Include="Scripts\App\main.js.map" />

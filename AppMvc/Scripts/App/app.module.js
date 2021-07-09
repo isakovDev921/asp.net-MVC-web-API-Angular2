@@ -6,34 +6,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
-var forms_1 = require("@angular/forms");
-var http_1 = require("@angular/http");
-var platform_browser_1 = require("@angular/platform-browser");
-var app_component_1 = require("./app.component");
-var AppModule = /** @class */ (function () {
-    function AppModule() {
-    }
-    AppModule = __decorate([
-        core_1.NgModule({
-            imports: [
-                //angular builtin module
-                platform_browser_1.BrowserModule,
-                http_1.HttpModule,
-                forms_1.FormsModule
-            ],
-            declarations: [
-                app_component_1.AppComponent
-            ],
-            providers: [
-            //register services here
-            ],
-            bootstrap: [
-                app_component_1.AppComponent
-            ]
-        })
-    ], AppModule);
-    return AppModule;
-}());
+const core_1 = require("@angular/core");
+const forms_1 = require("@angular/forms");
+const http_1 = require("@angular/http");
+const platform_browser_1 = require("@angular/platform-browser");
+const app_component_1 = require("./app.component");
+let AppModule = class AppModule {
+};
+AppModule = __decorate([
+    core_1.NgModule({
+        imports: [
+            //angular builtin module
+            platform_browser_1.BrowserModule,
+            http_1.HttpModule,
+            forms_1.FormsModule
+        ],
+        declarations: [
+            app_component_1.AppComponent
+        ],
+        providers: [
+        //register services here
+        ],
+        bootstrap: [
+            app_component_1.AppComponent
+        ]
+    })
+], AppModule);
 exports.AppModule = AppModule;
 //# sourceMappingURL=app.module.js.map

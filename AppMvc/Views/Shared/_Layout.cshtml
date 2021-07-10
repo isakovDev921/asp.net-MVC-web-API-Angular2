@@ -2,8 +2,8 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>@ViewBag.Title - My ASP.NET Application</title>
+        @*<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - My ASP.NET Application</title>*@
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
         <script src="../../node_modules/core-js/client/shim.min.js"></script>
@@ -26,14 +26,17 @@
         </div>
         <div class="container">
           <nav class="navbar navbar-default">
-                <div class="container">
-                    
-                    <ul class="nav navbar-nav">           
-                    <li>@Html.ActionLink("Главная", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Карточка предприятия", "About", "Home")</li>
-                    <li>@Html.ActionLink("Карточка клиента", "Contact", "Home")</li>
-                    </ul>
-                </div>
+              <div class="container">
+
+                  <ul class="nav navbar-nav">
+                      <li>@Html.ActionLink("Главная", "Index", "Home")</li>
+                      <li>@Html.ActionLink("Карточка предприятия", "About", "Home")</li>
+                      <li>@Html.ActionLink("Карточка клиента", "Contact", "Home")</li>
+                  </ul>
+
+                  @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
+
+              </div>
             </nav>
         </div>
 

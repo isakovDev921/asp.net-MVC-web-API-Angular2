@@ -1,11 +1,32 @@
-﻿@model AppMvc.Models.User
+﻿@model List<AppMvc.Models.Product>
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Главная";
 }
 
-<label>User Name: @Model.UserName</label>
+@*<label>User Name: @Model.FirstName</label>*@
 
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+@*<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>*@
+
+
+@*<div>
+    <table>
+        <tr>
+            <td><p>ID</p></td>
+            <td><p>Наименование</p></td>
+            <td><p>Стоимость</p></td>
+        </tr>
+        @foreach (var p in Model)
+        {
+        <tr>
+            <td><p>@p.Id</p></td>
+            <td><p>@p.Name</p></td>
+            <td><p>@p.Price</p></td>
+        </tr>
+        }
+    </table>
+</div>*@
+
+
 
 <my-app>Loading...</my-app>

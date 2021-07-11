@@ -6,33 +6,46 @@
                     <h4 class="title">&nbsp;&nbsp; Angular 2 Template in VS</h4>
                 </div>
                 <div class="content">
-                    <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-8">
-                            <div class="form-group">
-                                <label></label>
-                                <input type="text" class="form-control border-input" name="txtTest" id="txtTest" value=""
-                                       placeholder="Two-way data binding - Type here" [(ngModel)]="temp">
-                            </div>
+
+
+
+                    <div class="card text-center m-3">
+                        <h5 class="card-header">Simple GET Request with response type &lt;any&gt;</h5>
+                        <div class="card-body">
+                            Total @angular packages: {{totalAngularPackages}}
                         </div>
-                        <div class="col-md-2"></div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-8">
-                            <div class="form-group">
-                                <label>Value in Textbox</label>
-                                {{temp}}
-                            </div>
-                        </div>
-                        <div class="col-md-2"></div>
-                    </div>
-                    <br />
-                    <div class="text-center">
-                        <button class="btn btn-info btn-fill btn-wd" name="btnClick" id="btnClick" (click)="btnClickedEvent()">
-                            Click This Button !!!
-                        </button>
-                    </div>
+
+                    <p>Имя: {{test}}</p>
+                    <button (click)="getProducts()">Click</button>
+
+                    <!--<div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="form-group">
+                <label></label>
+                <input type="text" class="form-control border-input" name="txtTest" id="txtTest" value=""
+                       placeholder="Two-way data binding - Type here" [(ngModel)]="temp">
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="form-group">
+                <label>Value in Textbox</label>
+                {{temp}}
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <br/>
+    <div class="text-center">
+        <button class="btn btn-info btn-fill btn-wd" name="btnClick" id="btnClick" (click)="btnClickedEvent()">
+            Click This Button !!!
+        </button>
+    </div>-->
                     <br />
                 </div>
             </div>

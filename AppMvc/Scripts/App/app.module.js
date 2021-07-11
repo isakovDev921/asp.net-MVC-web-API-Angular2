@@ -11,12 +11,12 @@ const forms_1 = require("@angular/forms");
 const http_1 = require("@angular/http");
 const platform_browser_1 = require("@angular/platform-browser");
 const app_component_1 = require("./app.component");
+const app_service_1 = require("./app.service");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     core_1.NgModule({
         imports: [
-            //angular builtin module
             platform_browser_1.BrowserModule,
             http_1.HttpModule,
             forms_1.FormsModule
@@ -25,7 +25,7 @@ AppModule = __decorate([
             app_component_1.AppComponent
         ],
         providers: [
-        //register services here
+            app_service_1.RestDataSource
         ],
         bootstrap: [
             app_component_1.AppComponent

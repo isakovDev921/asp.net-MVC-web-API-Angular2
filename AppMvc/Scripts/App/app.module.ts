@@ -4,10 +4,11 @@ import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { RestDataSource } from "./app.service";
+
 
 @NgModule({
     imports: [
-        //angular builtin module
         BrowserModule,
         HttpModule,
         FormsModule
@@ -16,7 +17,7 @@ import { AppComponent } from './app.component';
         AppComponent
     ],
     providers: [
-        //register services here
+        RestDataSource
     ],
     bootstrap: [
         AppComponent

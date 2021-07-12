@@ -6,6 +6,10 @@
 }
 
 export class User {
-    constructor(public FirstName: string,
-        public Age: number) { }
+    constructor(
+        public firstName?: string,
+        public lastName?: string,
+        public email?: string,
+        public age?: number,
+        public phone?: string) { }
 }

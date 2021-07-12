@@ -10,9 +10,12 @@ class Product {
 }
 exports.Product = Product;
 class User {
-    constructor(FirstName, Age) {
-        this.FirstName = FirstName;
-        this.Age = Age;
+    constructor(firstName, lastName, email, age, phone) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.age = age;
+        this.phone = phone;
     }
 }
 exports.User = User;

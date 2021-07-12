@@ -10,31 +10,30 @@ import { User } from "./model";
 })
 
 export class AppComponent implements OnInit {
-    temp: string;
-    totalAngularPackages;
+    //temp: string;
+    //totalAngularPackages;
     //private products: Product[] = new Array<Product>();
     private test: string = "null";
 
 
-    carName = '';
-    carYear = 2017;
-    @Input() carItem: { name: string, year: number };
+    //carName = '';
+    //carYear = 2017;
+    //@Input() carItem: { name: string, year: number };
 
 
-    cars:[{name: string, year: number}] = [
-        {
-            name: 'Ford',
-            year: 2015
-        }];
+    //cars:[{name: string, year: number}] = [
+    //    {
+    //        name: 'Ford',
+    //        year: 2015
+    //    }];
 
-    user: User = new User("initComponent", 0); // данные вводимого пользователя
-    receivedUser: User | undefined; // полученный пользователь
+    user: User = new User(); 
+    receivedUser: User | undefined;
     done: boolean = false;
 
-    constructor(private _dataSource: RestDataSource,
-        private _http: Http) {
-      
-    }
+    constructor(
+        private _dataSource: RestDataSource,
+        private _http: Http) {}
 
     ngOnInit() {
         console.log("hello");
@@ -54,13 +53,13 @@ export class AppComponent implements OnInit {
     }
 
 
-    addCar(): void {
-        this.cars.push({
-            name: this.carItem.name,
-            year: this.carItem.year
-        });
+    //addCar(): void {
+    //    this.cars.push({
+    //        name: this.carItem.name,
+    //        year: this.carItem.year
+    //    });
        
-    }
+    //}
 
     
     submit(user: User) {
@@ -87,3 +86,32 @@ export class AppComponent implements OnInit {
 //        return this.data;
 //    }
 //}
+
+
+//this._modalDialogService.open({
+//        message: 'Змінити підприємство?',
+//        buttons: [
+//            {
+//                type: 'ok'
+//            },
+//            {
+//                type: 'cancel'
+//            }
+//        ]
+//    }).then((result) => {
+//        this._blockUI.start();
+//        return this._companyCardService.setCurrentUserCompanyCode(this.selectedCompanyItem.code);
+//    })
+//    .then(() => {
+//        this._toastr.success('Успішно змінено');
+//        this._$window.location.reload();
+//        this.modalInstance.close();
+//    })
+//    .catch((data) => {
+//        if (data == 'cancel')
+//            return;
+//        this._toastr.error('Помилка:' + data);
+//    })
+//    .finally(() => {
+//        this._blockUI.stop();
+//    });

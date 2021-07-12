@@ -1,6 +1,7 @@
-﻿import { Component, OnInit} from '@angular/core';
+﻿import { Component, OnInit, Input} from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { RestDataSource } from "./app.service";
+import { User } from "./model";
 
 
 @Component({
@@ -14,7 +15,24 @@ export class AppComponent implements OnInit {
     //private products: Product[] = new Array<Product>();
     private test: string = "null";
 
-    constructor(private dataSource: RestDataSource) {
+
+    carName = '';
+    carYear = 2017;
+    @Input() carItem: { name: string, year: number };
+
+
+    cars:[{name: string, year: number}] = [
+        {
+            name: 'Ford',
+            year: 2015
+        }];
+
+    user: User = new User("initComponent", 0); // данные вводимого пользователя
+    receivedUser: User | undefined; // полученный пользователь
+    done: boolean = false;
+
+    constructor(private _dataSource: RestDataSource,
+        private _http: Http) {
       
     }
 
@@ -27,12 +45,30 @@ export class AppComponent implements OnInit {
     //}
 
     getProducts(): string {
-        var data1 = this.dataSource.getData().subscribe(data => this.test = data);
+        var data1 = this._dataSource.getData().subscribe(data => this.test = data);
         return this.test;
     }
 
     btnClickedEvent(): void {
         console.log("button has been clicked");
+    }
+
+
+    addCar(): void {
+        this.cars.push({
+            name: this.carItem.name,
+            year: this.carItem.year
+        });
+       
+    }
+
+    
+    submit(user: User) {
+        this._dataSource.saveUser(user)
+            .subscribe(
+                (data: any) => { this.receivedUser = data; this.done = true; },
+                error => console.log(error)
+            );
     }
 }
 

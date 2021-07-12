@@ -10,12 +10,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
+const http_1 = require("@angular/http");
 const app_service_1 = require("./app.service");
+const model_1 = require("./model");
 let AppComponent = class AppComponent {
-    constructor(dataSource) {
-        this.dataSource = dataSource;
+    constructor(_dataSource, _http) {
+        this._dataSource = _dataSource;
+        this._http = _http;
         //private products: Product[] = new Array<Product>();
         this.test = "null";
+        this.carName = '';
+        this.carYear = 2017;
+        this.cars = [
+            {
+                name: 'Ford',
+                year: 2015
+            }
+        ];
+        this.user = new model_1.User("initComponent", 0); // данные вводимого пользователя
+        this.done = false;
     }
     ngOnInit() {
         console.log("hello");
@@ -24,19 +37,34 @@ let AppComponent = class AppComponent {
     //    return this.products;
     //}
     getProducts() {
-        var data1 = this.dataSource.getData().subscribe(data => this.test = data);
+        var data1 = this._dataSource.getData().subscribe(data => this.test = data);
         return this.test;
     }
     btnClickedEvent() {
         console.log("button has been clicked");
     }
+    addCar() {
+        this.cars.push({
+            name: this.carItem.name,
+            year: this.carItem.year
+        });
+    }
+    submit(user) {
+        this._dataSource.saveUser(user)
+            .subscribe((data) => { this.receivedUser = data; this.done = true; }, error => console.log(error));
+    }
 };
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], AppComponent.prototype, "carItem", void 0);
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
         templateUrl: '../Scripts/App/app.component.html'
     }),
-    __metadata("design:paramtypes", [app_service_1.RestDataSource])
+    __metadata("design:paramtypes", [app_service_1.RestDataSource,
+        http_1.Http])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //import { Product } from "./product.model";

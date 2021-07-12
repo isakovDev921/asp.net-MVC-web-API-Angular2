@@ -4,3 +4,8 @@
         public category?: string,
         public price?: number) { }
 }
+
+export class User {
+    constructor(public FirstName: string,
+        public Age: number) { }
+}

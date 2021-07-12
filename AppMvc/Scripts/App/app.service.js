@@ -14,11 +14,16 @@ const http_1 = require("@angular/http");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/do");
 let RestDataSource = class RestDataSource {
-    constructor(http) {
-        this.http = http;
+    constructor(_http) {
+        this._http = _http;
     }
     getData() {
-        return this.http.get("http://localhost:61374/Home/GetTestString").map(response => response.json());
+        return this._http.get("http://localhost:61374/Home/GetTestString")
+            .map(response => response.json());
+    }
+    saveUser(user) {
+        return this._http.post("http://localhost:61374/Home/CreateUser", user)
+            .map(response => response.json());
     }
 };
 RestDataSource = __decorate([

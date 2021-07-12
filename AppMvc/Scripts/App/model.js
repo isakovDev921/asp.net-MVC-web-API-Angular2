@@ -9,4 +9,11 @@ class Product {
     }
 }
 exports.Product = Product;
+class User {
+    constructor(FirstName, Age) {
+        this.FirstName = FirstName;
+        this.Age = Age;
+    }
+}
+exports.User = User;
 //# sourceMappingURL=model.js.map

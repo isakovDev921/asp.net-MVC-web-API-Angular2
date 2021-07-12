@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -45,8 +47,24 @@ namespace AppMvc.Controllers
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-        
 
+        [HttpPost]
+        public async Task<ActionResult> CreateUser(User user)
+        {
+           
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new System.Uri("http://localhost:59470/");
+                var json = Newtonsoft.Json.JsonConvert.SerializeObject(user);
+                var data = new System.Net.Http.StringContent(json, Encoding.UTF8, "application/json");
+
+                var result = await client.PostAsync("/api/app/CreateUser", data);
+                string resultContent = await result.Content.ReadAsStringAsync();
+            }
+
+            return Json("Success", JsonRequestBehavior.AllowGet);
+        }
+        
 
 
 

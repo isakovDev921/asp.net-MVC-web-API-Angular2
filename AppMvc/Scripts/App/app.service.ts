@@ -3,17 +3,24 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
-
+import { User } from "./model";
 
 
 @Injectable()
 export class RestDataSource {
 
-    constructor(private http: Http) { }
+    constructor(private _http: Http) { }
 
    
     getData(): Observable<string> {
-        return this.http.get("http://localhost:61374/Home/GetTestString").map(response => response.json());
+        return this._http.get("http://localhost:61374/Home/GetTestString")
+            .map(response => response.json());
+    }
+
+    saveUser(user: User): Observable<User> {
+
+        return this._http.post("http://localhost:61374/Home/CreateUser", user)
+            .map(response => response.json());
     }
 }
 

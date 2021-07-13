@@ -13,10 +13,16 @@ const core_1 = require("@angular/core");
 const http_1 = require("@angular/http");
 const app_service_1 = require("./app.service");
 const model_1 = require("./model");
+const forms_1 = require("@angular/forms");
 let AppComponent = class AppComponent {
-    constructor(_dataSource, _http) {
+    constructor(_dataSource, _http, _fb) {
+        //this.myForm.valueChanges
+        //    .subscribe((formValue) => {
+        //        console.log(formValue);
+        //    });
         this._dataSource = _dataSource;
         this._http = _http;
+        this._fb = _fb;
         //temp: string;
         //totalAngularPackages;
         //private products: Product[] = new Array<Product>();
@@ -31,13 +37,27 @@ let AppComponent = class AppComponent {
         //    }];
         this.user = new model_1.User();
         this.done = false;
+        //this.myForm = new FormGroup({
+        //    "firstName": new FormControl("{ value: 'test' }")
+        //"userEmail": new FormControl("", [
+        //    Validators.required,
+        //    Validators.email
+        //]),
+        //"userPhone": new FormControl()
+        //});
     }
     ngOnInit() {
-        console.log("hello");
+        this.initForm();
     }
-    //getProducts(): Product[] {
-    //    return this.products;
-    //}
+    initForm() {
+        this.myForm = this._fb.group({
+            "firstName": ['', forms_1.Validators.required],
+            "lastName": ['', forms_1.Validators.required],
+            "age": ['', [forms_1.Validators.required, forms_1.Validators.pattern("^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9]|200)$")]],
+            "email": ['', [forms_1.Validators.pattern("^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$")]],
+            "phone": ['', [forms_1.Validators.pattern("[- +()0-9]+")]]
+        });
+    }
     getProducts() {
         var data1 = this._dataSource.getData().subscribe(data => this.test = data);
         return this.test;
@@ -45,6 +65,9 @@ let AppComponent = class AppComponent {
     btnClickedEvent() {
         console.log("button has been clicked");
     }
+    //getProducts(): Product[] {
+    //    return this.products;
+    //}
     //addCar(): void {
     //    this.cars.push({
     //        name: this.carItem.name,
@@ -59,10 +82,15 @@ let AppComponent = class AppComponent {
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
-        templateUrl: '../Scripts/App/app.component.html'
+        templateUrl: '../Scripts/App/app.component.html',
+        styles: [`
+        input.ng-touched.ng-invalid {border:solid red 2px;}
+        input.ng-touched.ng-valid {border:solid green 2px;}
+    `]
     }),
     __metadata("design:paramtypes", [app_service_1.RestDataSource,
-        http_1.Http])
+        http_1.Http,
+        forms_1.FormBuilder])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //import { Product } from "./product.model";

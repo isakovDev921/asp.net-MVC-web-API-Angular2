@@ -2,11 +2,19 @@
 import { Http, Response } from '@angular/http';
 import { RestDataSource } from "./app.service";
 import { User } from "./model";
-
+import {
+    FormControl, FormGroup, FormsModule, Validators, 
+    ReactiveFormsModule, FormBuilder
+} from '@angular/forms';
 
 @Component({
     selector: 'my-app',
-    templateUrl: '../Scripts/App/app.component.html'
+    templateUrl: '../Scripts/App/app.component.html',
+    styles: [`
+        input.ng-touched.ng-invalid {border:solid red 2px;}
+        input.ng-touched.ng-valid {border:solid green 2px;}
+    `]
+
 })
 
 export class AppComponent implements OnInit {
@@ -27,21 +35,47 @@ export class AppComponent implements OnInit {
     //        year: 2015
     //    }];
 
-    user: User = new User(); 
-    receivedUser: User | undefined;
-    done: boolean = false;
-
+     user: User = new User();
+     receivedUser: User | undefined;
+     done: boolean = false;
+     myForm: FormGroup;
+     
     constructor(
         private _dataSource: RestDataSource,
-        private _http: Http) {}
-
-    ngOnInit() {
-        console.log("hello");
+        private _http: Http,
+        private _fb: FormBuilder
+    ) {
+        
+        //this.myForm.valueChanges
+        //    .subscribe((formValue) => {
+        //        console.log(formValue);
+        //    });
+       
+        //this.myForm = new FormGroup({
+        //    "firstName": new FormControl("{ value: 'test' }")
+            //"userEmail": new FormControl("", [
+            //    Validators.required,
+            //    Validators.email
+            //]),
+            //"userPhone": new FormControl()
+        //});
+      
     }
 
-    //getProducts(): Product[] {
-    //    return this.products;
-    //}
+    ngOnInit() {
+        this.initForm();
+    }
+
+    initForm(): void {
+        this.myForm = this._fb.group({
+            "firstName": ['', Validators.required],
+            "lastName": ['', Validators.required],
+            "age": ['', [Validators.required, Validators.pattern("^(0?[1-9]|[1-9][0-9]|[1][1-9][1-9]|200)$")]],
+            "email": ['', [Validators.pattern("^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$")]],
+            "phone": ['', [Validators.pattern("[- +()0-9]+")]]
+        });
+    }
+
 
     getProducts(): string {
         var data1 = this._dataSource.getData().subscribe(data => this.test = data);
@@ -51,6 +85,10 @@ export class AppComponent implements OnInit {
     btnClickedEvent(): void {
         console.log("button has been clicked");
     }
+
+    //getProducts(): Product[] {
+    //    return this.products;
+    //}
 
 
     //addCar(): void {

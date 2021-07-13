@@ -8,167 +8,235 @@
                 <div class="content">
 
 
+                    <h3>Карточка клиента</h3>
 
-                    <!--<div class="card text-center m-3">
-        <h5 class="card-header">Simple GET Request with response type &lt;any&gt;</h5>
-        <div class="card-body">
-            Total @angular packages: {{totalAngularPackages}}
-        </div>
-    </div>
-
-    <p>Имя: {{test}}</p>
-    <button (click)="getProducts()">Click</button>
-
-    <br>-->
-                    <!--<input type="text" class="form-control" [(ngModel)]="carName">
-    <input type="text" class="form-control" [(ngModel)]="carYear">
-    <button class="btn btn-primary" (click)="addCar()">Добавить машину</button>
-    <hr>-->
-                    <!--<ul>
-        <li *ngFor="let car of carItem" [carItem]="car">
-            'Название' {{carItem.name}}, Год: {{carItem.year}}
-        </li>
-    </ul>-->
-
-                    <h3>Заглавное наименование</h3>
-
-                    <div class="form-group">
+                    <form [formGroup]="myForm" novalidate>
                         <div class="row">
                             <div class="col-sm-4">
-                                Имя
+                                <div class="form-group">
+                                    <label>Имя</label>
+                                    <input class="form-control"
+                                           type="text"
+                                           name="firstName"
+                                           [formControl]="myForm.controls['firstName']"
+                                           [(ngModel)]="user.firstName" />
+
+                                    <div class="alert alert-danger"
+                                         *ngIf="myForm.controls['firstName'].invalid
+                                        && myForm.controls['firstName'].touched">
+                                        Не указано имя
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-sm-4">
-                                <input class="form-control"
-                                       name="firstName"
-                                       required minlength="4"
-                                       [(ngModel)]="user.firstName" />
+                            <div class="col-sm-8">
                             </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
                         <div class="row">
                             <div class="col-sm-4">
-                                Фамилия
+                                <div class="form-group">
+                                    <label>Фамилия</label>
+                                    <input class="form-control"
+                                           type="text"
+                                           name="lastName"
+                                           [formControl]="myForm.controls['lastName']"
+                                           [(ngModel)]="user.lastName" />
+
+                                    <div class="alert alert-danger"
+                                         *ngIf="myForm.controls['lastName'].invalid
+                                        && myForm.controls['lastName'].touched">
+                                        Не указана фамилия
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-sm-4">
-                                <input class="form-control"
-                                       name="lastName"
-                                       [(ngModel)]="user.lastName" />
+                            <div class="col-sm-8">
                             </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
                         <div class="row">
                             <div class="col-sm-4">
-                                Электронная почта
+                                <div class="form-group">
+                                    <label>Возраст</label>
+                                    <input class="form-control"
+                                           type="number"
+                                           name="age"
+                                           [formControl]="myForm.controls['age']"
+                                           [(ngModel)]="user.age" />
+
+                                    <div class="alert alert-danger"
+                                         *ngIf="myForm.controls['age'].invalid
+                                        && myForm.controls['age'].touched">
+                                        Не указан возраст
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-sm-4">
-                                <input class="form-control"
-                                       name="email"
-                                       [(ngModel)]="user.email" />
+                            <div class="col-sm-8">
                             </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
                         <div class="row">
                             <div class="col-sm-4">
-                               Номер телефона
+                                <div class="form-group">
+                                    <label>Электронная почта</label>
+                                    <input class="form-control"
+                                           type="text"
+                                           name="email"
+                                           [formControl]="myForm.controls['email']"
+                                           [(ngModel)]="user.email" />
+
+                                    <div class="alert alert-danger"
+                                         *ngIf="myForm.controls['email'].invalid
+                                        && myForm.controls['email'].touched">
+                                        Не указан Email
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-sm-4">
-                                <input class="form-control"
-                                       name="phone"
-                                       [(ngModel)]="user.phone" />
+                            <div class="col-sm-8">
                             </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
                         <div class="row">
                             <div class="col-sm-4">
-                                Возраст
+                                <div class="form-group">
+                                    <label>Номер телефона</label>
+                                    <input class="form-control"
+                                           type="number"
+                                           name="phone"
+                                           [formControl]="myForm.controls['phone']"
+                                           [(ngModel)]="user.phone" />
+
+                                    <div class="alert alert-danger"
+                                         *ngIf="myForm.controls['phone'].invalid
+                                        && myForm.controls['phone'].touched">
+                                        Не указан номер телефона
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-sm-4">
-                                <input class="form-control"
-                                       type="number"
-                                       name="age"
-                                       [(ngModel)]="user.age" />
+                            <div class="col-sm-8">
                             </div>
                         </div>
-                    </div>
+                        
 
-                    <div class="form-group">
                         <div class="row">
                             <div class="col-sm-4">
+                                <div class="form-group">
+                                    <button class="btn btn-primary"
+                                            [disabled]="myForm.invalid"
+                                            (click)="submit(user)">
+                                        Сохранить
+                                    </button>
+                                </div>
                             </div>
-                            <div class="col-sm-4">
-                                <button class="btn btn-primary"
-                                        (click)="submit(user)">
-                                    Сохранить
-                                </button>
+                            <div class="col-sm-8">
                             </div>
                         </div>
-                    </div>
+                    </form>
 
+                      <!--Реализовать таблицу-->
 
-                    <!--Реализовать таблицу-->
-                    <div *ngIf="done">
-                        <div>Получено от сервера:</div>
-                        <div>Имя: {{receivedUser.FirstName}}</div>
-                        <div>Возраст: {{receivedUser.Age}}</div>
-                    </div>
-
-
-
-
-
-
-                            <!--<table class="table table-sm table-bordered table-striped">
-            <tr>
-                <th>1</th>
-                <th>2</th>
-                <th>3</th>
-                <th>4</th>
-                <th>5</th>
-            </tr>
-            <tr>
-                <td [attr.colspan]="model.getProducts().length
-                {{model.getProduct(1)?.name || 'None'}}
-                </td>
-            </tr>
-        </table>-->
-                            <!--<div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="form-group">
-                    <label></label>
-                    <input type="text" class="form-control border-input" name="txtTest" id="txtTest" value=""
-                           placeholder="Two-way data binding - Type here" [(ngModel)]="temp">
                 </div>
             </div>
-            <div class="col-md-2"></div>
-        </div>
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="form-group">
-                    <label>Value in Textbox</label>
-                    {{temp}}
-                </div>
-            </div>
-            <div class="col-md-2"></div>
-        </div>
-        <br/>
-        <div class="text-center">
-            <button class="btn btn-info btn-fill btn-wd" name="btnClick" id="btnClick" (click)="btnClickedEvent()">
-                Click This Button !!!
-            </button>
-        </div>-->
-                            <br />
-                        </div>
-                    </div>
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div *ngIf="done">
+    <div>Получено от сервера:</div>
+<div>Имя: {{receivedUser.FirstName}}</div>
+    <div>Возраст: {{receivedUser.Age}}</div>
+</div>-->
+<!--<div class="card text-center m-3">
+    <h5 class="card-header">Simple GET Request with response type &lt;any&gt;</h5>
+    <div class="card-body">
+        Total @angular packages: {{totalAngularPackages}}
+    </div>
+</div>
+
+<p>Имя: {{test}}</p>
+<button (click)="getProducts()">Click</button>
+
+<br>-->
+<!--<input type="text" class="form-control" [(ngModel)]="carName">
+<input type="text" class="form-control" [(ngModel)]="carYear">
+<button class="btn btn-primary" (click)="addCar()">Добавить машину</button>
+<hr>-->
+<!--<ul>
+    <li *ngFor="let car of carItem" [carItem]="car">
+        'Название' {{carItem.name}}, Год: {{carItem.year}}
+    </li>
+</ul>-->
+<!--<table class="table table-sm table-bordered table-striped">
+    <tr>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+        <th>5</th>
+    </tr>
+    <tr>
+        <td [attr.colspan]="model.getProducts().length
+        {{model.getProduct(1)?.name || 'None'}}
+        </td>
+    </tr>
+</table>-->
+<!--<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control border-input" name="txtTest" id="txtTest" value=""
+                   placeholder="Two-way data binding - Type here" [(ngModel)]="temp">
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="form-group">
+            <label>Value in Textbox</label>
+            {{temp}}
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<br/>
+<div class="text-center">
+    <button class="btn btn-info btn-fill btn-wd" name="btnClick" id="btnClick" (click)="btnClickedEvent()">
+        Click This Button !!!
+    </button>
+</div>-->

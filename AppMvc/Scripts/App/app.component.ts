@@ -76,15 +76,22 @@ export class AppComponent implements OnInit {
         });
     }
 
+    submit(user: User) {
+        this._dataSource.saveUser(user)
+            .subscribe(
+                (data: any) => { this.receivedUser = data; this.done = true; },
+                error => console.log(error)
+            );
+    }
 
     getProducts(): string {
         var data1 = this._dataSource.getData().subscribe(data => this.test = data);
         return this.test;
     }
 
-    btnClickedEvent(): void {
-        console.log("button has been clicked");
-    }
+    //btnClickedEvent(): void {
+    //    console.log("button has been clicked");
+    //}
 
     //getProducts(): Product[] {
     //    return this.products;
@@ -100,13 +107,7 @@ export class AppComponent implements OnInit {
     //}
 
     
-    submit(user: User) {
-        this._dataSource.saveUser(user)
-            .subscribe(
-                (data: any) => { this.receivedUser = data; this.done = true; },
-                error => console.log(error)
-            );
-    }
+   
 }
 
 //import { Product } from "./product.model";

@@ -58,25 +58,13 @@ let AppComponent = class AppComponent {
             "phone": ['', [forms_1.Validators.pattern("[- +()0-9]+")]]
         });
     }
-    getProducts() {
-        var data1 = this._dataSource.getData().subscribe(data => this.test = data);
-        return this.test;
-    }
-    btnClickedEvent() {
-        console.log("button has been clicked");
-    }
-    //getProducts(): Product[] {
-    //    return this.products;
-    //}
-    //addCar(): void {
-    //    this.cars.push({
-    //        name: this.carItem.name,
-    //        year: this.carItem.year
-    //    });
-    //}
     submit(user) {
         this._dataSource.saveUser(user)
             .subscribe((data) => { this.receivedUser = data; this.done = true; }, error => console.log(error));
+    }
+    getProducts() {
+        var data1 = this._dataSource.getData().subscribe(data => this.test = data);
+        return this.test;
     }
 };
 AppComponent = __decorate([

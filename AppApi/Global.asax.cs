@@ -11,7 +11,9 @@ namespace AppApi
     {
         protected void Application_Start()
         {
-            GlobalConfiguration.Configure(WebApiConfig.Register);
+            Logger.LogInfo("Start webApi");
+          GlobalConfiguration.Configure(WebApiConfig.Register);
         }
+      
     }
 }

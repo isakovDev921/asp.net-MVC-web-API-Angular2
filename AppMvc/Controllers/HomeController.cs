@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using AppMvc.Models;
 using Newtonsoft.Json;
 
+
 namespace AppMvc.Controllers
 {
     public class HomeController : Controller
@@ -94,5 +95,25 @@ namespace AppMvc.Controllers
         }
 
       
+        public async Task<ActionResult> CreateUser2(string name)
+        {
+
+            //using (var client = new HttpClient())
+            //{
+            //    client.BaseAddress = new System.Uri("http://localhost:59470/");
+            //    var json = Newtonsoft.Json.JsonConvert.SerializeObject(user);
+            //    var data = new System.Net.Http.StringContent(json, Encoding.UTF8, "application/json");
+
+            //    var result = await client.PostAsync("/api/app/CreateUser", data);
+            //    string resultContent = await result.Content.ReadAsStringAsync();
+            //}
+
+            return Json("Success", JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
+
     }
 }

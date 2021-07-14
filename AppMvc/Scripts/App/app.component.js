@@ -20,11 +20,7 @@ let AppComponent = class AppComponent {
         this._http = _http;
         this._fb = _fb;
         this.user = new model_1.User();
-        this.users = [
-            {
-                "FirstName": "Douglas  Pace"
-            }
-        ];
+        this.users = [];
         this.done = false;
     }
     ngOnInit() {

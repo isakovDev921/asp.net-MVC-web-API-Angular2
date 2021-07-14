@@ -17,62 +17,43 @@ namespace AppMvc.Controllers
     {
         public async Task<ActionResult> Index()
         {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new System.Uri("http://localhost:59470/");
-
-                var response = await client.GetAsync("api/app/GetProducts");
-
-                string result = response.IsSuccessStatusCode ? await response.Content.ReadAsStringAsync() : string.Empty;
-
-                var test = JsonConvert.DeserializeObject<List<Product>>(result);
-            }
             return View();
         }
 
-       
-        public async Task<JsonResult> GetTestString()
+        public ActionResult User()
         {
-            string result = "init server MVC";
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new System.Uri("http://localhost:59470/");
-
-                var response = await client.GetAsync("api/app/GetProduct");
-
-                 result = response.IsSuccessStatusCode ? await response.Content.ReadAsStringAsync() : string.Empty;
-            }
-            
-            return Json(result, JsonRequestBehavior.AllowGet);
+            return View();
         }
 
         [HttpPost]
         public async Task<ActionResult> CreateUser(User user)
         {
-           
+            string result = "result";
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new System.Uri("http://localhost:59470/");
                 var json = Newtonsoft.Json.JsonConvert.SerializeObject(user);
                 var data = new System.Net.Http.StringContent(json, Encoding.UTF8, "application/json");
 
-                var result = await client.PostAsync("/api/app/CreateUser", data);
-                string resultContent = await result.Content.ReadAsStringAsync();
+                var response = await client.PostAsync("/api/app/CreateUser", data);
+                result = await response.Content.ReadAsStringAsync();
             }
 
-            return Json("Success", JsonRequestBehavior.AllowGet);
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
         
     
         [HttpGet]
         public async Task<ActionResult> GetUsers()
         {
-            object result = "result null";
+            string result = "result";
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new System.Uri("http://localhost:59470/");
                 var response = await client.GetAsync("/api/app/GetUsers");
-                result = response.IsSuccessStatusCode ? await response.Content.ReadAsStringAsync() : string.Empty;
+                result = response.IsSuccessStatusCode ? 
+                    await response.Content.ReadAsStringAsync() : 
+                    string.Empty;
             }
             return Json(result, JsonRequestBehavior.AllowGet);
         }
@@ -94,15 +75,6 @@ namespace AppMvc.Controllers
         //    return user;
         //}
 
-
-
-        public ActionResult User()
-        {
-
-            return View();
-        }
-
-      
         public async Task<ActionResult> CreateUser2(string name)
         {
 

@@ -10,7 +10,7 @@
 
                     <form [formGroup]="myForm" novalidate>
                         <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <label>Имя</label>
                                     <input class="form-control"
@@ -26,12 +26,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-8">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <label>Фамилия</label>
                                     <input class="form-control"
@@ -47,12 +42,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-8">
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <label>Возраст</label>
                                     <input class="form-control"
@@ -68,12 +59,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-8">
+                            <div class="col-sm-3">
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <label>Электронная почта</label>
                                     <input class="form-control"
@@ -89,12 +80,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-8">
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <label>Номер телефона</label>
                                     <input class="form-control"
@@ -110,12 +97,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-8">
+                            <div class="col-sm-6">
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-1">
                                 <div class="form-group">
                                     <button class="btn btn-primary"
                                             [disabled]="myForm.invalid"
@@ -124,8 +111,9 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="col-sm-8">
+                            <div class="col-sm-11">
                             </div>
+
                         </div>
                     </form>
                 </div>
@@ -135,7 +123,7 @@
 </div>
 
 
-<div class="container">
+<div class="container-fluid">
     <h4>Список пользователей</h4>
 
     <table class="table table-hover">
@@ -164,7 +152,7 @@
     </table>
 
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-1">
             <div class="form-group">
                 <button class="btn"
                         (click)="refreshTable(user)">
@@ -172,8 +160,9 @@
                 </button>
             </div>
         </div>
-        <div class="col-sm-8">
+        <div class="col-sm-11">
         </div>
+
     </div>
 
 </div>

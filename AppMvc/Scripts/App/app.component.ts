@@ -17,11 +17,7 @@ import {FormGroup, Validators, FormBuilder } from '@angular/forms';
 export class AppComponent implements OnInit {
  
     user: User = new User();
-    users: any[] = [
-        {
-            "FirstName": "Douglas  Pace"
-        }
-    ];
+    users: any[] = [];
 
      receivedUser: User | undefined;
      done: boolean = false;
@@ -56,7 +52,6 @@ export class AppComponent implements OnInit {
                 },
                 error => console.log(error)
         );
-
     }
 
     refreshTable() {

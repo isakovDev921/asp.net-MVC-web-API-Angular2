@@ -13,10 +13,10 @@ export class RestDataSource {
 
     constructor(private _http: Http) {}
 
-    getData(): Observable<string> {
-        return this._http.get(`${this._ulr}/Home/GetTestString`)
-            .map(response => response.json());
-    }
+    //getData(): Observable<string> {
+    //    return this._http.get(`${this._ulr}/Home/GetTestString`)
+    //        .map(response => response.json());
+    //}
 
     saveUser(user: User): Observable<User> {
         return this._http.post(`${this._ulr}/Home/CreateUser`, user)

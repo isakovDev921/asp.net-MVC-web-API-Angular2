@@ -8,7 +8,6 @@
                 <div class="content">
                     <h4>Новый пользователь</h4>
 
-
                     <form [formGroup]="myForm" novalidate>
                         <div class="row">
                             <div class="col-sm-4">
@@ -115,7 +114,6 @@
                             </div>
                         </div>
 
-
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
@@ -130,12 +128,6 @@
                             </div>
                         </div>
                     </form>
-
-
-
-
-
-
                 </div>
             </div>
         </div>
@@ -148,19 +140,25 @@
 
     <table class="table table-hover">
         <thead>
-        <tr>
-            <th>Имя</th>
-            <th>Фамилия</th>
-            <th colspan="2">События</th>
-        </tr>
+            <tr>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Возраст</th>
+                <th>Электронная почта</th>
+                <th>Номер телефона</th>
+                <th colspan="2">События</th>
+            </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let item of users">
-            <td>{{ item.FirstName }}</td>
-            <td>{{ item.LastName }}</td>
-            <td><a>Редак иконка</a></td>
-            <td><a>Удалить иконка</a></td>
-        </tr>
+            <tr *ngFor="let item of users">
+                <td>{{ item.FirstName }}</td>
+                <td>{{ item.LastName }}</td>
+                <td>{{ item.Age }}</td>
+                <td>{{ item.Email }}</td>
+                <td>{{ item.Phone }}</td>
+                <td></td>
+                <td></td>
+            </tr>
 
         </tbody>
     </table>

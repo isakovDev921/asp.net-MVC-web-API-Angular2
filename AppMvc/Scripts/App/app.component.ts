@@ -2,7 +2,7 @@
 import { Http, Response } from '@angular/http';
 import { RestDataSource } from "./app.service";
 import { User } from "./model";
-import {FormGroup, Validators, FormBuilder} from '@angular/forms';
+import {FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
     selector: 'my-app',
@@ -17,7 +17,11 @@ import {FormGroup, Validators, FormBuilder} from '@angular/forms';
 export class AppComponent implements OnInit {
  
     user: User = new User();
-    users: any;
+    users: any[] = [
+        {
+            "FirstName": "Douglas  Pace"
+        }
+    ];
 
      receivedUser: User | undefined;
      done: boolean = false;
@@ -51,14 +55,15 @@ export class AppComponent implements OnInit {
                     this.done = true;
                 },
                 error => console.log(error)
-            );
+        );
+
     }
 
     refreshTable() {
         this._dataSource.getUsers()
             .subscribe(
                 (data: any) => {
-                    this.users = data;
+                    this.users = JSON.parse(data);
                     this.done = true;
                 },
                 error => console.log(error)

@@ -23,7 +23,7 @@ export class RestDataSource {
             .map(response => response.json());
     }
 
-    getUsers(): Observable<User>  {
+    getUsers(): Observable<any>  {
         return this._http.get(`${this._ulr}/Home/GetUsers`)
             .map(response => response.json());
     }

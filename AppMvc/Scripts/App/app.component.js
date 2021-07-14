@@ -20,6 +20,11 @@ let AppComponent = class AppComponent {
         this._http = _http;
         this._fb = _fb;
         this.user = new model_1.User();
+        this.users = [
+            {
+                "FirstName": "Douglas  Pace"
+            }
+        ];
         this.done = false;
     }
     ngOnInit() {
@@ -44,7 +49,7 @@ let AppComponent = class AppComponent {
     refreshTable() {
         this._dataSource.getUsers()
             .subscribe((data) => {
-            this.users = data;
+            this.users = JSON.parse(data);
             this.done = true;
         }, error => console.log(error));
     }

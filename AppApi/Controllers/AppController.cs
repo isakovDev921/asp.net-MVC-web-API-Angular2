@@ -15,33 +15,7 @@ namespace AppApi.Controllers
 {
     public class AppController : ApiController
     {
-        [HttpGet]
-        public List<Product> GetProducts() 
-        {
-            var productsList = new List<Product>();
-
-            using (var dataContext = new DataContext())
-            {
-                productsList = dataContext.Products.ToList();
-              
-            }
-
-            return productsList;
-        }
-
-        [HttpGet]
-        public string GetProduct()
-        {
-            var productsList = new List<Product>();
-
-            using (var dataContext = new DataContext())
-            {
-                productsList = dataContext.Products.ToList();
-            }
-            return productsList[0].Name;
-        }
-        
-    
+        [HttpPost]
         public async Task<IHttpActionResult> CreateUser(User user)
         {
             try
@@ -65,14 +39,51 @@ namespace AppApi.Controllers
         public async Task<IHttpActionResult> GetUsers()
         {
             var result = new List<User>();
-
-            using (var dataContext = new DataContext())
+            try
             {
-               
-                result = await dataContext.Users.ToListAsync();
+                using (var dataContext = new DataContext())
+                {
+                    result = await dataContext.Users.ToListAsync();
+                }
+                Logger.LogInfo("Запрос данных из БД");
+
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError($"ERROR: {ex} : Неудачный запрос из БД");
+                return BadRequest();
             }
             return Ok(result);
         }
+
+
+        //[HttpGet]
+        //public List<Product> GetProducts() 
+        //{
+        //    var productsList = new List<Product>();
+
+        //    using (var dataContext = new DataContext())
+        //    {
+        //        productsList = dataContext.Products.ToList();
+
+        //    }
+
+        //    return productsList;
+        //}
+
+        //[HttpGet]
+        //public string GetProduct()
+        //{
+        //    var productsList = new List<Product>();
+
+        //    using (var dataContext = new DataContext())
+        //    {
+        //        productsList = dataContext.Products.ToList();
+        //    }
+        //    return productsList[0].Name;
+        //}
+
+
 
         //[HttpPost]
         //public async Task<IHttpActionResult> CreateUser2(User user)

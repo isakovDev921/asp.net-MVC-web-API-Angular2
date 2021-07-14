@@ -1,12 +1,14 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using AppApi.Models;
 using Serilog;
+using SerilogWeb.Classic.Enrichers;
 
 
 namespace AppApi.Controllers
@@ -38,42 +40,52 @@ namespace AppApi.Controllers
             }
             return productsList[0].Name;
         }
-
-
+        
     
         public async Task<IHttpActionResult> CreateUser(User user)
         {
             try
-            { 
-
-               
+            {
+                using (var dataContext = new DataContext())
+                {
+                    dataContext.Users.Add(user);
+                    await dataContext.SaveChangesAsync();
+                }
+                Logger.LogInfo($"Добавлен в БД новый пользователь:{user.FirstName}, {user.LastName}, {user.Age}, {user.Email}, {user.Phone}");
             }
             catch (Exception ex)
             {
-                Logger.LogError("Tfdsfsdf!");
-            }
-           
-
-
-
-
-            using (var dataContext = new DataContext())
-            {
-                dataContext.Users.Add(user);
-                await dataContext.SaveChangesAsync();
+                Logger.LogError($"ERROR: {ex} :{user.FirstName}, {user.LastName}, {user.Age}, {user.Email}, {user.Phone}");
+                return BadRequest();
             }
             return Ok();
         }
 
-        [HttpPost]
-        public async Task<IHttpActionResult> CreateUser2(User user)
+        [HttpGet]
+        public async Task<IHttpActionResult> GetUsers()
         {
+            var result = new List<User>();
+
             using (var dataContext = new DataContext())
             {
-                dataContext.Users.Add(user);
-                await dataContext.SaveChangesAsync();
+               
+                result = await dataContext.Users.ToListAsync();
             }
-            return Ok();
+            return Ok(result);
         }
+
+        //[HttpPost]
+        //public async Task<IHttpActionResult> CreateUser2(User user)
+        //{
+        //    using (var dataContext = new DataContext())
+        //    {
+        //        dataContext.Users.Add(user);
+        //        await dataContext.SaveChangesAsync();
+        //    }
+        //    return Ok();
+        //}
+
+
+
     }
 }

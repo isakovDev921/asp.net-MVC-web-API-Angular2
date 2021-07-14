@@ -16,35 +16,11 @@ const model_1 = require("./model");
 const forms_1 = require("@angular/forms");
 let AppComponent = class AppComponent {
     constructor(_dataSource, _http, _fb) {
-        //this.myForm.valueChanges
-        //    .subscribe((formValue) => {
-        //        console.log(formValue);
-        //    });
         this._dataSource = _dataSource;
         this._http = _http;
         this._fb = _fb;
-        //temp: string;
-        //totalAngularPackages;
-        //private products: Product[] = new Array<Product>();
-        this.test = "null";
-        //carName = '';
-        //carYear = 2017;
-        //@Input() carItem: { name: string, year: number };
-        //cars:[{name: string, year: number}] = [
-        //    {
-        //        name: 'Ford',
-        //        year: 2015
-        //    }];
         this.user = new model_1.User();
         this.done = false;
-        //this.myForm = new FormGroup({
-        //    "firstName": new FormControl("{ value: 'test' }")
-        //"userEmail": new FormControl("", [
-        //    Validators.required,
-        //    Validators.email
-        //]),
-        //"userPhone": new FormControl()
-        //});
     }
     ngOnInit() {
         this.initForm();
@@ -60,11 +36,17 @@ let AppComponent = class AppComponent {
     }
     submit(user) {
         this._dataSource.saveUser(user)
-            .subscribe((data) => { this.receivedUser = data; this.done = true; }, error => console.log(error));
+            .subscribe((data) => {
+            this.receivedUser = data;
+            this.done = true;
+        }, error => console.log(error));
     }
-    getProducts() {
-        var data1 = this._dataSource.getData().subscribe(data => this.test = data);
-        return this.test;
+    refreshTable() {
+        this._dataSource.getUsers()
+            .subscribe((data) => {
+            this.users = data;
+            this.done = true;
+        }, error => console.log(error));
     }
 };
 AppComponent = __decorate([
@@ -81,46 +63,4 @@ AppComponent = __decorate([
         forms_1.FormBuilder])
 ], AppComponent);
 exports.AppComponent = AppComponent;
-//import { Product } from "./product.model";
-//export class SimpleDataSource {
-//    private data: Product[];
-//    constructor() {
-//        this.data = new Array<Product>(
-//            new Product(1, "Kayak", "Watersports", 275),
-//            new Product(2, "Lifejacket", "Watersports", 48.95),
-//            new Product(3, "Soccer Ball", "Soccer", 19.50),
-//            new Product(4, "Corner Flags", "Soccer", 34.95),
-//            new Product(5, "Thinking Cap", "Chess", 16));
-//    }
-//    getData(): Product[] {
-//        return this.data;
-//    }
-//}
-//this._modalDialogService.open({
-//        message: 'Змінити підприємство?',
-//        buttons: [
-//            {
-//                type: 'ok'
-//            },
-//            {
-//                type: 'cancel'
-//            }
-//        ]
-//    }).then((result) => {
-//        this._blockUI.start();
-//        return this._companyCardService.setCurrentUserCompanyCode(this.selectedCompanyItem.code);
-//    })
-//    .then(() => {
-//        this._toastr.success('Успішно змінено');
-//        this._$window.location.reload();
-//        this.modalInstance.close();
-//    })
-//    .catch((data) => {
-//        if (data == 'cancel')
-//            return;
-//        this._toastr.error('Помилка:' + data);
-//    })
-//    .finally(() => {
-//        this._blockUI.stop();
-//    });
 //# sourceMappingURL=app.component.js.map

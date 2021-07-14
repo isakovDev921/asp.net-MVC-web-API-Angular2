@@ -17,7 +17,6 @@ namespace AppMvc.Controllers
     {
         public async Task<ActionResult> Index()
         {
-          
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new System.Uri("http://localhost:59470/");
@@ -28,8 +27,6 @@ namespace AppMvc.Controllers
 
                 var test = JsonConvert.DeserializeObject<List<Product>>(result);
             }
-
-
             return View();
         }
 
@@ -45,7 +42,7 @@ namespace AppMvc.Controllers
 
                  result = response.IsSuccessStatusCode ? await response.Content.ReadAsStringAsync() : string.Empty;
             }
-
+            
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
@@ -66,8 +63,19 @@ namespace AppMvc.Controllers
             return Json("Success", JsonRequestBehavior.AllowGet);
         }
         
-
-
+    
+        [HttpGet]
+        public async Task<ActionResult> GetUsers()
+        {
+            object result = "result null";
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new System.Uri("http://localhost:59470/");
+                var response = await client.GetAsync("/api/app/GetUsers");
+                result = response.IsSuccessStatusCode ? await response.Content.ReadAsStringAsync() : string.Empty;
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
 
 
         //private async Task<User> GetUser()

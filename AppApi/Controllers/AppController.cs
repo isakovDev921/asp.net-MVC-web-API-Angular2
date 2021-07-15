@@ -56,6 +56,32 @@ namespace AppApi.Controllers
             return Ok(result);
         }
 
+        [HttpPost]
+        public async Task<IHttpActionResult> DeleteUser(User user)
+        {
+            try
+            {
+                using (var dataContext = new DataContext())
+                {
+                    var dataContextUser = dataContext.Users.FirstOrDefault(d => d.Id == user.Id);
+                    if (dataContextUser != null)
+                    {
+                        dataContext.Entry(dataContextUser).State = EntityState.Deleted;
+                        await dataContext.SaveChangesAsync();
+                    }
+                }
+                Logger.LogInfo($"Пользоватеь с ID:{user.Id} удален");
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError($"ERROR: {ex} :Неудачное удаление пользователя {user.Id}");
+                return BadRequest();
+            }
+            return Ok();
+        }
+
+
+
 
         //[HttpGet]
         //public List<Product> GetProducts() 

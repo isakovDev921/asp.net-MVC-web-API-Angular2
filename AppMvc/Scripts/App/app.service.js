@@ -13,9 +13,11 @@ const core_1 = require("@angular/core");
 const http_1 = require("@angular/http");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/do");
+const model_1 = require("./model");
 let RestDataSource = class RestDataSource {
     constructor(_http) {
         this._http = _http;
+        this.user = new model_1.User();
         this._ulr = "http://localhost:61374";
     }
     //getData(): Observable<string> {
@@ -28,6 +30,11 @@ let RestDataSource = class RestDataSource {
     }
     getUsers() {
         return this._http.get(`${this._ulr}/Home/GetUsers`)
+            .map(response => response.json());
+    }
+    deleteUser(Id) {
+        this.user.Id = Id;
+        return this._http.post(`${this._ulr}/Home/DeleteUser`, this.user)
             .map(response => response.json());
     }
 };

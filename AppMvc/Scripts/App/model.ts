@@ -7,6 +7,7 @@
 
 export class User {
     constructor(
+        public Id?: number,
         public firstName?: string,
         public lastName?: string,
         public email?: string,

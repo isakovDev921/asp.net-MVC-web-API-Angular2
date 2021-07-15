@@ -10,7 +10,8 @@ class Product {
 }
 exports.Product = Product;
 class User {
-    constructor(firstName, lastName, email, age, phone) {
+    constructor(Id, firstName, lastName, email, age, phone) {
+        this.Id = Id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

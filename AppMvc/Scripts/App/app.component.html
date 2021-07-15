@@ -144,8 +144,15 @@
                 <td>{{ item.Age }}</td>
                 <td>{{ item.Email }}</td>
                 <td>{{ item.Phone }}</td>
-                <td></td>
-                <td></td>
+                <td>
+                    <!--<button class="btn btn-danger" type="button" (click)="deleteId(item.Id)">Удалить</button>-->
+                </td>
+                <td>
+                    <button class="btn btn-danger" 
+                            type="button" 
+                            (click)="deleteUser(item.Id)">Удалить</button>
+                </td>
+                
             </tr>
 
         </tbody>

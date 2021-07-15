@@ -58,6 +58,22 @@ namespace AppMvc.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public async Task<ActionResult> DeleteUser(User user)
+        {
+            string result = "result";
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new System.Uri("http://localhost:59470/");
+                var json = Newtonsoft.Json.JsonConvert.SerializeObject(user);
+                var data = new System.Net.Http.StringContent(json, Encoding.UTF8, "application/json");
+
+                var response = await client.PostAsync("/api/app/DeleteUser", data);
+                result = await response.Content.ReadAsStringAsync();
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
 
         //private async Task<User> GetUser()
         //{
@@ -75,21 +91,21 @@ namespace AppMvc.Controllers
         //    return user;
         //}
 
-        public async Task<ActionResult> CreateUser2(string name)
-        {
+        //public async Task<ActionResult> CreateUser2(string name)
+        //{
 
-            //using (var client = new HttpClient())
-            //{
-            //    client.BaseAddress = new System.Uri("http://localhost:59470/");
-            //    var json = Newtonsoft.Json.JsonConvert.SerializeObject(user);
-            //    var data = new System.Net.Http.StringContent(json, Encoding.UTF8, "application/json");
+        //    //using (var client = new HttpClient())
+        //    //{
+        //    //    client.BaseAddress = new System.Uri("http://localhost:59470/");
+        //    //    var json = Newtonsoft.Json.JsonConvert.SerializeObject(user);
+        //    //    var data = new System.Net.Http.StringContent(json, Encoding.UTF8, "application/json");
 
-            //    var result = await client.PostAsync("/api/app/CreateUser", data);
-            //    string resultContent = await result.Content.ReadAsStringAsync();
-            //}
+        //    //    var result = await client.PostAsync("/api/app/CreateUser", data);
+        //    //    string resultContent = await result.Content.ReadAsStringAsync();
+        //    //}
 
-            return Json("Success", JsonRequestBehavior.AllowGet);
-        }
+        //    return Json("Success", JsonRequestBehavior.AllowGet);
+        //}
 
 
 

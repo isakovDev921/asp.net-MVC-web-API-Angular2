@@ -65,5 +65,17 @@ export class AppComponent implements OnInit {
             );
     }
 
+    deleteUser(id) {
+        this._dataSource.deleteUser(id)
+                .subscribe(
+                (data: any) => {
+                        this.done = true;
+                    this.refreshTable();
+                },
+                error => console.log(error));
+    }
+
+    
+
 
 }

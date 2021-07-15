@@ -49,6 +49,13 @@ let AppComponent = class AppComponent {
             this.done = true;
         }, error => console.log(error));
     }
+    deleteUser(id) {
+        this._dataSource.deleteUser(id)
+            .subscribe((data) => {
+            this.done = true;
+            this.refreshTable();
+        }, error => console.log(error));
+    }
 };
 AppComponent = __decorate([
     core_1.Component({

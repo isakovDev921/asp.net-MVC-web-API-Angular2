@@ -145,12 +145,13 @@
                 <td>{{ item.Email }}</td>
                 <td>{{ item.Phone }}</td>
                 <td>
-                    <!--<button class="btn btn-danger" type="button" (click)="deleteId(item.Id)">Удалить</button>-->
                 </td>
                 <td>
-                    <button class="btn btn-danger" 
-                            type="button" 
-                            (click)="deleteUser(item.Id)">Удалить</button>
+                    <button class="btn btn-danger"
+                            type="button"
+                            (click)="deleteUser(item.Id)">
+                         <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                    </button>
                 </td>
                 
             </tr>

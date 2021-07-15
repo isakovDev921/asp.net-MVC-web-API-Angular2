@@ -80,49 +80,5 @@ namespace AppApi.Controllers
             return Ok();
         }
 
-
-
-
-        //[HttpGet]
-        //public List<Product> GetProducts() 
-        //{
-        //    var productsList = new List<Product>();
-
-        //    using (var dataContext = new DataContext())
-        //    {
-        //        productsList = dataContext.Products.ToList();
-
-        //    }
-
-        //    return productsList;
-        //}
-
-        //[HttpGet]
-        //public string GetProduct()
-        //{
-        //    var productsList = new List<Product>();
-
-        //    using (var dataContext = new DataContext())
-        //    {
-        //        productsList = dataContext.Products.ToList();
-        //    }
-        //    return productsList[0].Name;
-        //}
-
-
-
-        //[HttpPost]
-        //public async Task<IHttpActionResult> CreateUser2(User user)
-        //{
-        //    using (var dataContext = new DataContext())
-        //    {
-        //        dataContext.Users.Add(user);
-        //        await dataContext.SaveChangesAsync();
-        //    }
-        //    return Ok();
-        //}
-
-
-
     }
 }

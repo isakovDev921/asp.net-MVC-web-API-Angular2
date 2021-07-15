@@ -34,29 +34,131 @@
     </div>
 
     <div class="container body-content">
+        <form>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>Имя</label>
+                        <input class="form-control"
+                               type="text"
+                               name="firstName" />
 
-        <div id="results"></div>
-        <input type="text" id="name" name="name"></input>
-        <input type="submit" id="submit" value="Поиск"></input>
-        
+                        <div class="alert alert-danger">
+
+                            Не указано имя
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>Фамилия</label>
+                        <input class="form-control"
+                               type="text"
+                               name="lastName" />
+
+                        <div class="alert alert-danger">
+                            Не указана фамилия
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>Возраст</label>
+                        <input class="form-control"
+                               type="number"
+                               name="age" />
+
+                        <div class="alert alert-danger">
+                            Не указан возраст
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>Электронная почта</label>
+                        <input class="form-control"
+                               type="text"
+                               name="email" />
+
+                        <div class="alert alert-danger">
+                            Не указан Email
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>Номер телефона</label>
+                        <input class="form-control"
+                               type="number"
+                               name="phone" />
+
+                        <div class="alert alert-danger">
+                            Не указан номер телефона
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-sm-1">
+                <div class="form-group">
+                    <button class="btn btn-primary">
+                        Сохранить
+                    </button>
+                </div>
+            </div>
+            <div class="col-sm-11">
+            </div>
+
+        </div>
+
+
+
+
+
+
+        @*<input type="submit" id="submit" value="Получить пользователей"></input>
+
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#submit').click(function (e) {
                     e.preventDefault();
                     var name = $('#name').val();
                     name=encodeURIComponent(name);
-                    $('#results').load('@Url.Action("CreateUser2", 
+                    $('#results').load('@Url.Action("GetUsers",
                                             "Home")?name=' +
                         name);
                 });
             });
         </script>
-        
+
+        <div id="results"></div>
+
+        <div id="searchresults">
+
+            <ul>
+                @foreach (var item  )
+                {
+                    <li>@item.FirstName</li>
+                }
+            </ul>
+
+        </div>*@
 
         <hr />
         <footer>
             <p style="text-align: right">&copy; @DateTime.Now.Year</p>
         </footer>
+
     </div>
 
     @Scripts.Render("~/bundles/jquery")

@@ -40,6 +40,13 @@ let AppComponent = class AppComponent {
             .subscribe((data) => {
             this.receivedUser = data;
             this.done = true;
+            this.myForm = this._fb.group({
+                "firstName": [''],
+                "lastName": [''],
+                "age": [''],
+                "email": [''],
+                "phone": ['']
+            });
         }, error => console.log(error));
     }
     refreshTable() {

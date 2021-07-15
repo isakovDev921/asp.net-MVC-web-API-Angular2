@@ -49,6 +49,14 @@ export class AppComponent implements OnInit {
                 (data: any) => {
                     this.receivedUser = data;
                     this.done = true;
+
+                    this.myForm = this._fb.group({
+                        "firstName": [''],
+                        "lastName": [''],
+                        "age": [''],
+                        "email": [''],
+                        "phone": ['']
+                    });
                 },
                 error => console.log(error)
         );

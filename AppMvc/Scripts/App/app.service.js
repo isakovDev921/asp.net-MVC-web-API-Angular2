@@ -20,10 +20,6 @@ let RestDataSource = class RestDataSource {
         this.user = new model_1.User();
         this._ulr = "http://localhost:61374";
     }
-    //getData(): Observable<string> {
-    //    return this._http.get(`${this._ulr}/Home/GetTestString`)
-    //        .map(response => response.json());
-    //}
     saveUser(user) {
         return this._http.post(`${this._ulr}/Home/CreateUser`, user)
             .map(response => response.json());
